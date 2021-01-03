@@ -7,9 +7,6 @@ ol {
 }
 
 div {
-    margin: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #aaff00;
-    width:300px;
+    width: 90%;
+    margin: 2em auto;
 }

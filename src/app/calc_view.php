@@ -1,4 +1,3 @@
-<?php require_once dirname(__FILE__).'/../config.php'; ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -17,16 +16,21 @@
 </head>
 <body>
 
-<h1>Credit Calculator</h1>
+<div>
+    <a href="<?php print(_APP_URL);?>app/security/logout.php">Logout</a>
+</div>
 
-
-<form action="<?php print(_APP_URL);?>src/app/calc.php" method="post">
-    <label>Kwota kredytu: </label><br>
+<form action="<?php print(_APP_URL);?>app/calc.php" method="POST">
+    <legend>Credit Calculator</legend>
+    <label>Kwota kredytu: <br>
     <input type="number" name="loanAmount" value="<?php if(isset($loanAmount)) print($loanAmount); ?>" /><br>
-    <label>Ilosc lat: </label><br>
+    </label>
+    <label>Ilosc lat: <br>
     <input type="number" name="loanYears" value="<?php if(isset($loanYears)) print($loanYears); ?>" /><br>
-    <label>Oprocentowanie: </label><br>
+    </label>
+    <label>Oprocentowanie: <br>
     <input type="number" name="interest" value="<?php if(isset($interest)) print($interest); ?>" /><br><br>
+    </label>
     <input type="submit" value="Oblicz" />
 </form>
 

@@ -1,9 +1,13 @@
 <?php
 require_once dirname(__FILE__).'/../config.php';
 
-$loanAmount = $_POST['loanAmount'];
-$loanYears = $_POST['loanYears'];
-$interest = $_POST['interest'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $loanAmount = $_POST['loanAmount'];
+    $loanYears = $_POST['loanYears'];
+    $interest = $_POST['interest'];
+}
+
+include _ROOT_PATH.'/app/security/check.php';
 
 if ( !(isset($loanAmount) && isset($loanYears) && isset($interest)) ) {
     $errors [] = 'Błędne wywołanie aplikacji. Brak jednego z parametrów.';
