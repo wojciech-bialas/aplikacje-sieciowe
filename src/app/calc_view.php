@@ -1,56 +1,68 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+<?php
+include _ROOT_PATH.'/templates/top.html';
+?>
+<ul class="nav justify-content-end">
+    <li class="nav-item">
+        <a class="nav-link" href="<?php print(_APP_URL);?>app/security/logout.php">Logout</a>
+    </li>
+</ul>
 
-    <title>Calculator</title>
 
-    <meta name="author" content="Wojciech Bialas">
-    <meta name="description" content="PHP application made by Wojciech Bialas for Network Applications faculty">
-    <meta name="keywords" content="network, app, faculty, silesian university">
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <form action="<?php print(_APP_URL);?>app/calc.php" method="POST">
+                <legend>Credit Calculator</legend>
+                <div class="form-group">
+                    <label>Kwota kredytu: <br>
+                        <input type="number" class="form-control" name="loanAmount" value="<?php if(isset($loanAmount)) print($loanAmount); ?>" /><br>
+                    </label>
+                </div>
 
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=font1|font2|etc" type="text/css">
-    <link rel="stylesheet" href="../css/stylesheet.css" type="text/css">
-</head>
-<body>
+                <div class="form-group">
+                    <label>Ilosc lat: <br>
+                        <input type="number" class="form-control" name="loanYears" value="<?php if(isset($loanYears)) print($loanYears); ?>" /><br>
+                    </label>
+                </div>
 
-<div>
-    <a href="<?php print(_APP_URL);?>app/security/logout.php">Logout</a>
+                <div class="form-group">
+                    <label>Oprocentowanie: <br>
+                        <input type="number" class="form-control" name="interest" value="<?php if(isset($interest)) print($interest); ?>" /><br><br>
+                    </label>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Oblicz" />
+            </form>
+        </div>
+    </div>
 </div>
 
-<form action="<?php print(_APP_URL);?>app/calc.php" method="POST">
-    <legend>Credit Calculator</legend>
-    <label>Kwota kredytu: <br>
-    <input type="number" name="loanAmount" value="<?php if(isset($loanAmount)) print($loanAmount); ?>" /><br>
-    </label>
-    <label>Ilosc lat: <br>
-    <input type="number" name="loanYears" value="<?php if(isset($loanYears)) print($loanYears); ?>" /><br>
-    </label>
-    <label>Oprocentowanie: <br>
-    <input type="number" name="interest" value="<?php if(isset($interest)) print($interest); ?>" /><br><br>
-    </label>
-    <input type="submit" value="Oblicz" />
-</form>
-
 <?php
+if (isset($result)) {
+    echo '<div class="container">';
+    echo '<div class="row">';
+    echo '<div class="col-sm">';
+    echo '<div class="result">';
+    echo 'Miesięczna rata: '.round($result, 2).'zł';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+}
 if (isset($errors)) {
     if (count($errors) > 0) {
+        echo '<div class="container">';
+        echo '<div class="row">';
+        echo '<div class="col-sm">';
+        echo '<ul class="list-group">';
         foreach ($errors as $key => $msg) {
-            echo '<ol>';
-            echo '<br>'.$msg.'<br>';
-            echo '</ol>';
+            echo '<li class="list-group-item">' . $msg . '</li>';
         }
+        echo '</ul>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
 }
 
-if (isset($result)) {
-    echo '<div>';
-    echo '<br>'.'Miesięczna rata: '.round($result, 2).'zł';
-    echo '</div>';
-}
+include _ROOT_PATH.'/templates/bottom.html';
 ?>
-
-</body>
-</html>

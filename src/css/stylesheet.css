@@ -1,12 +1,9 @@
-ol {
-    margin: 20px;
-    padding: 10px 10px 10px 30px;
-    border-radius: 5px;
-    background-color: #f88;
-    width: 300px;
+div {
+    width: 80%;
+    margin: 2em auto;
 }
 
-div {
-    width: 90%;
-    margin: 2em auto;
+.col-sm{
+    float: none;
+    margin: 0 auto;
 }
